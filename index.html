@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>lessonlab Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ffffff">
+<script src="https://cdn.adivery.com/ads.js"></script>
+  <!-- Adivery Web Banner -->
+<!-- کتابخانه حل معادلات نمادین -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/algebrite/1.5.0/algebrite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.10.0/math.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>📘 lessonlab Pro</h2>
+    <button onclick="showSection('prime')">فیزیک</button>
+    <button onclick="showSection('calc')">ادبیات</button>
+    <button onclick="showSection('stats')">عربی</button>
+    <button onclick="showSection('trig')">شیمی</button>
+    <button onclick="showSection('english')">🇬🇧 انگلیسی</button>
+    <button onclick="showSection('advancedCalculator')">هوش مصنوعی</button>
+    <button onclick="showSection('help')">راهنما</button>
+    <button onclick="showSection('about')">درباره</button>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+<!-- انگلیسی -->
+<section id="english" class="card hidden">
+  <h3>🇬🇧 انگلیسی</h3>
+  <p>ترجمه انگلیسی ↔ فارسی</p>
+
+  <div class="english-tabs">
+    <button onclick="showEnglishSection('enToFa')">
+      🇬🇧 ➜ 🇮🇷 انگلیسی به فارسی
+    </button>
+
+    <button onclick="showEnglishSection('faToEn')">
+      🇮🇷 ➜ 🇬🇧 فارسی به انگلیسی
+    </button>
+  </div>
+
+  <div class="english-section">
+
+    <!-- EN -> FA -->
+    <div id="enToFa" class="english-item">
+      <h4>ترجمه انگلیسی به فارسی</h4>
+      <input id="enInput" placeholder="متن انگلیسی">
+      <button onclick="translateEnToFa()">ترجمه</button>
+      <p id="enResult"></p>
+    </div>
+
+    <!-- FA -> EN -->
+    <div id="faToEn" class="english-item hidden">
+      <h4>ترجمه فارسی به انگلیسی</h4>
+      <input id="faInput" placeholder="متن فارسی">
+      <button onclick="translateFaToEn()">ترجمه</button>
+      <p id="faResult"></p>
+    </div>
+
+  </div>
+</section>
+
+    
+<!-- راهنما / Help -->
+<section id="help" class="card hidden">
+  <h3>راهنمای lessonlab Pro</h3>
+
+  <div class="help-inline">
+    <strong>📘 فیزیک:</strong>
+    در این بخش می‌توانید مسائل مربوط به سرعت، شتاب، نیرو، انرژی و سایر موضوعات فیزیک را تمرین یا محاسبه کنید.
+  </div>
+
+  <div class="help-inline">
+    <strong>📖 ادبیات:</strong>
+    این بخش برای تمرین معنی لغات، درک مطلب، تحلیل متن و تمرین‌های ادبیات فارسی استفاده می‌شود.
+  </div>
+
+  <div class="help-inline">
+    <strong>📝 عربی:</strong>
+    در این قسمت می‌توانید ترجمه جملات عربی، تمرین قواعد و ساخت جمله را انجام دهید.
+  </div>
+
+  <div class="help-inline">
+    <strong>🧪 شیمی:</strong>
+    این بخش برای حل مسائل شیمی، جرم مولی، فرمول‌ها و تمرین‌های شیمی طراحی شده است.
+  </div>
+
+  <div class="help-inline">
+    <strong>🤖 محاسبات:</strong>
+    در این بخش می‌توانید مسائل درس های مختلف را به صورت متنی وارد کنید تا سیستم آن را محاسبه کند.
+    <br><br>
+  </div>
+
+</section>
+
+      
+<section id="prime" class="card">
+  <h3>⚛️ فیزیک</h3>
+  <p>محاسبات مکانیک کلاسیک و فیزیک پایه</p>
+
+  <!-- دکمه‌های بخش -->
+  <div class="physics-tabs">
+    <button onclick="showPhysicsSection('speed')">💨 سرعت</button>
+    <button onclick="showPhysicsSection('acceleration')">🌀 شتاب</button>
+    <button onclick="showPhysicsSection('force')">💪 نیرو</button>
+    <button onclick="showPhysicsSection('weight')">⚖️ وزن</button>
+    <button onclick="showPhysicsSection('pressure')">🧱 فشار</button>
+    <button onclick="showPhysicsSection('displacement')">↔️ جابه‌جایی</button>
+    <button onclick="showPhysicsSection('torque')">🌀 گشتاور</button>
+    <button onclick="showPhysicsSection('mechanical')">⚙️ مزیت مکانیکی</button>
+    <button onclick="showPhysicsSection('work')">🏋️‍♂️ کار نیرو</button>
+  </div>
+
+  <div class="physics-section">
+
+    <!-- سرعت -->
+    <div id="speed" class="physics-item">
+      <h4>💨 سرعت (v = s/t)</h4>
+      <input id="v_distance" type="number" placeholder="مسافت (m)">
+      <input id="v_time" type="number" placeholder="زمان (s)">
+      <button onclick="calcSpeed()">محاسبه سرعت</button>
+      <p id="v_result"></p>
+    </div>
+
+    <!-- شتاب -->
+    <div id="acceleration" class="physics-item hidden">
+      <h4>🌀 شتاب (a = Δv/t)</h4>
+      <input id="a_vf" type="number" placeholder="سرعت نهایی (m/s)">
+      <input id="a_vi" type="number" placeholder="سرعت اولیه (m/s)">
+      <input id="a_time" type="number" placeholder="زمان (s)">
+      <button onclick="calcAcceleration()">محاسبه شتاب</button>
+      <p id="a_result"></p>
+    </div>
+
+    <!-- نیرو -->
+    <div id="force" class="physics-item hidden">
+      <h4>💪 نیرو (F = m * a)</h4>
+      <input id="f_mass" type="number" placeholder="جرم (kg)">
+      <input id="f_acc" type="number" placeholder="شتاب (m/s²)">
+      <button onclick="calcForce()">محاسبه نیرو</button>
+      <p id="f_result"></p>
+    </div>
+
+    <!-- وزن -->
+    <div id="weight" class="physics-item hidden">
+      <h4>⚖️ وزن (W = m * g)</h4>
+      <input id="w_mass" type="number" placeholder="جرم (kg)">
+      <input id="w_g" type="number" placeholder="شتاب جاذبه (m/s²)" value="9.8">
+      <button onclick="calcWeight()">محاسبه وزن</button>
+      <p id="w_result"></p>
+    </div>
+
+    <!-- فشار -->
+    <div id="pressure" class="physics-item hidden">
+      <h4>🧱 فشار (P = F / A)</h4>
+      <input id="p_force" type="number" placeholder="نیرو (N)">
+      <input id="p_area" type="number" placeholder="مساحت (m²)">
+      <button onclick="calcPressure()">محاسبه فشار</button>
+      <p id="p_result"></p>
+    </div>
+
+    <!-- جابه‌جایی -->
+    <div id="displacement" class="physics-item hidden">
+      <h4>↔️ جابه‌جایی (Δx)</h4>
+      <input id="d_initial" type="number" placeholder="مکان اولیه (m)">
+      <input id="d_final" type="number" placeholder="مکان نهایی (m)">
+      <button onclick="calcDisplacement()">محاسبه جابه‌جایی</button>
+      <p id="d_result"></p>
+    </div>
+
+    <!-- گشتاور -->
+    <div id="torque" class="physics-item hidden">
+      <h4>🌀 گشتاور نیرو (τ = F * r * sinθ)</h4>
+      <input id="t_force" type="number" placeholder="نیرو (N)">
+      <input id="t_radius" type="number" placeholder="فاصله تا محور (m)">
+      <input id="t_angle" type="number" placeholder="زاویه θ (درجه)">
+      <button onclick="calcTorque()">محاسبه گشتاور</button>
+      <p id="t_result"></p>
+    </div>
+
+    <!-- مزیت مکانیکی -->
+    <div id="mechanical" class="physics-item hidden">
+      <h4>⚙️ مزیت مکانیکی (MA = F_out / F_in)</h4>
+      <input id="ma_fout" type="number" placeholder="نیروی خروجی (N)">
+      <input id="ma_fin" type="number" placeholder="نیروی ورودی (N)">
+      <button onclick="calcMechanicalAdv()">محاسبه مزیت مکانیکی</button>
+      <p id="ma_result"></p>
+    </div>
+
+    <!-- کار نیرو -->
+    <div id="work" class="physics-item hidden">
+      <h4>🏋️‍♂️ کار نیروی محرک (W = F * d * cosθ)</h4>
+      <input id="work_force" type="number" placeholder="نیرو (N)">
+      <input id="work_distance" type="number" placeholder="جابجایی (m)">
+      <input id="work_angle" type="number" placeholder="زاویه θ (درجه)">
+      <button onclick="calcWork()">محاسبه کار</button>
+      <p id="work_result"></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ادبیات -->
+<section id="calc" class="card hidden">
+  <h3>📖 ادبیات فارسی</h3>
+  <p>تمرین معنی لغت، تحلیل جمله و مشاهده کتاب‌ها و شاعران</p>
+
+  <div class="literature-tabs">
+    <button onclick="showLiteratureSection('litWords')">📚 معنی لغات</button>
+    <button onclick="showLiteratureSection('litAnalysis')">📝 تحلیل جمله</button>
+    <button onclick="showLiteratureSection('litBooks')">📖 شاعران و کتاب‌ها</button>
+  </div>
+
+  <div class="literature-section">
+
+    <!-- بخش 1: معنی لغات -->
+    <div id="litWords" class="literature-item">
+      <h4>📚 معنی لغات</h4>
+      <input id="litWord" placeholder="لغت را وارد کنید">
+      <button onclick="findMeaning()">نمایش معنی</button>
+      <p id="litMeaning"></p>
+    </div>
+
+    <!-- بخش 2: تحلیل جمله -->
+    <div id="litAnalysis" class="literature-item hidden">
+      <h4>📝 تحلیل جمله</h4>
+      <textarea id="litSentence" placeholder="جمله خود را وارد کنید"></textarea>
+      <button onclick="analyzeSentence()">تحلیل</button>
+      <p id="litAnalysisResult"></p>
+    </div>
+
+    <!-- بخش 3: شاعران و کتاب‌ها -->
+    <div id="litBooks" class="literature-item hidden">
+      <h4>📖 شاعران و کتاب‌ها</h4>
+      <select id="poetSelect" onchange="showBooks()">
+        <option value="">یک شاعر انتخاب کنید</option>
+      </select>
+      <ul id="booksList"></ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<!-- عربی -->
+<section id="stats" class="card hidden">
+  <h3>📝 عربی</h3>
+  <p>تمرین ترجمه و قواعد عربی</p>
+
+  <div class="arabic-tabs">
+    <button onclick="showArabicSection('arTranslate')">🌍 ترجمه</button>
+    <button onclick="showArabicSection('arVerbs')">📖 افعال</button>
+
+  </div>
+
+  <div class="arabic-section">
+
+    <div id="arTranslate" class="arabic-item">
+      <h4>🌍 ترجمه کلمات</h4>
+      <input id="arWord" placeholder="کلمه عربی">
+      <button onclick="translateArabic()">ترجمه</button>
+      <p id="arMeaning"></p>
+    </div>
+
+    <div id="arVerbs" class="arabic-item hidden">
+      <h4>📖 تمرین فعل</h4>
+<pre>
+ <span style="color: rgb(0, 117, 201);"> افعال ماضی :</span>
+مفرد مذکر غایب: ذَهَبَ
+مفرد مؤنث غایب: ذَهَبَتْ
+مثنی مذکر غایب: ذَهَبا
+مثنی مؤنث غایب: ذَهَبَتَا
+جمع مذکر غایب: ذَهَبُوا
+جمع مؤنث غایب: ذَهَبْنَ
+مفرد مذکر مخاطب: ذَهَبْتَ
+مفرد مؤنث مخاطب: ذَهَبْتِ
+مثنی مذکر مخاطب: ذَهَبْتُما
+مثنی مؤنث مخاطب: ذَهَبْتُما
+جمع مذکر مخاطب: ذَهَبْتُمْ
+جمع مؤنث مخاطب: ذَهَبْتُنَّ
+متکلم وحده: ذَهَبْتُ
+متکلم مع‌الغیر: ذَهَبْنا
+ <span style="color: rgb(0, 117, 201);"> افعال مضارع :</span>
+مفرد مذکر غایب: یَذهَبُ
+مفرد مؤنث غایب: تَذهبُ
+مثنی مذکر غایب: یَذهَبانِ
+مثنی مؤنث غایب: تَذهبان
+جمع مذکر غایب: یَذهَبونَ
+جمع مؤنث غایب: یَذهبنَ
+مفرد مذکر مخاطب: تذهبُ
+مفرد مؤنث مخاطب: تَذهَبینَ
+مثنی مذکر مخاطب: تَذهبانِ
+مثنی مؤنث مخاطب: تَذهَبانِ
+جمع مذکر مخاطب: تَذهَبونَ
+جمع مؤنث مخاطب: تَذهَبنَ
+متکلم وحده: اَذهَبُ
+متکلم مع‌الغیر: نذَهَب
+ <span style="color: rgb(0, 117, 201);"> افعال مستقبل :</span>
+مفرد مذکر غایب: سَیَذهَبُ
+مفرد مؤنث غایب: سَتَذهبُ
+مثنی مذکر غایب: سَیَذهَبانِ
+مثنی مؤنث غایب: سَتَذهبان
+جمع مذکر غایب: سَیَذهَبونَ
+جمع مؤنث غایب: سَیَذهبنَ
+مفرد مذکر مخاطب: سَتذهبُ
+مفرد مؤنث مخاطب: سَتَذهَبینَ
+مثنی مذکر مخاطب: سَتَذهبانِ
+مثنی مؤنث مخاطب: سَتَذهَبانِ
+جمع مذکر مخاطب: سَتَذهَبونَ
+جمع مؤنث مخاطب: سَتَذهَبنَ
+متکلم وحده: سَاَذهَبُ
+متکلم مع‌الغیر: سَنذَهَب
+ <span style="color: rgb(0, 117, 201);"> افعال امر :</span>
+مفرد مذکر: اِذهَبْ
+مفرد مؤنث: اِذهَبی
+مثنی: اِذهَبا
+جمع مذکر: اِذهَبوا
+جمع مؤنث: اِذهَبنَ
+ <span style="color: rgb(0, 117, 201);"> افعال نهی :</span>
+مفرد مذکر: لا تَذهَبْ 
+مفرد مؤنث: لا تَذهَبی
+مثنی: لا تَذهَبا
+جمع مذکر: لا تَذهَبوا
+جمع مؤنث: لا تَذهَبنَ
+</pre>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- شیمی -->
+<section id="trig" class="card hidden">
+  <h3>🧪 شیمی</h3>
+  <p>محاسبات شیمی </p>
+
+  <div class="chemistry-tabs">
+       <button onclick="showChemistrySection('chemMola')"> تحلیل فرمول ؟</button>
+    <button onclick="showChemistrySection('chemMolar')">⚖️ جرم مولی</button>
+    <button onclick="showChemistrySection('chemMoles')">🧮 تعداد مول</button>
+    <button onclick="showChemistrySection('chemConc')">💧 غلظت</button>
+  </div>
+
+  <div class="chemistry-section">
+    <div id="chemMola" class="chemistry-item">
+      <h4> تحلیل فرمول ؟</h4>
+      <input id="molarMassInput1" placeholder="فرمول مثل H2O">
+<button onclick="analyzeAtom()">محاسبه</button>
+
+      <p id="molarMassResult1"></p>
+    </div>
+
+
+    <div id="chemMolar" class="chemistry-item">
+      <h4>⚖️ جرم مولی</h4>
+      <input id="molarMassInput" placeholder="فرمول مثل H2O">
+      <button onclick="calcMolarMass()">محاسبه</button>
+      <p id="molarMassResult"></p>
+    </div>
+
+    <div id="chemMoles" class="chemistry-item hidden">
+      <h4>🧮 تعداد مول</h4>
+      <input id="massInput" type="number" placeholder="جرم (g)">
+      <input id="mmInput" type="number" placeholder="جرم مولی">
+      <button onclick="calcMoles()">محاسبه</button>
+      <p id="moleResult"></p>
+    </div>
+
+    <div id="chemConc" class="chemistry-item hidden">
+      <h4>💧 غلظت محلول</h4>
+      <input id="solute" type="number" placeholder="مول حل‌شونده">
+      <input id="volume" type="number" placeholder="حجم محلول (L)">
+      <button onclick="calcConcentration()">محاسبه</button>
+      <p id="concResult"></p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- محاسبات -->
+<section id="advancedCalculator" class="card hidden">
+  <h3>🤖 هوش مصنوعی هوشمند</h3>
+  <p>این بخش در حال بروز رسانی می باشد.</p>
+
+</section>
+
+
+<!-- درباره -->
+<section id="about" class="card hidden">
+  <h3>ℹ️ درباره lessonlab Pro</h3>
+  <p>
+    ابزار درسی فوق حرفه‌ای<br>
+    مناسب دانش‌آموز و معلم<br>
+    ساخته شده توسط آرمان نقشبندی
+  </p>
+  
+</section>
+
+
+  </main>
+
+</div>
+<script>
+async function solveAIWithServer() {
+  const input = document.getElementById("aiInput").value;
+  const output = document.getElementById("aiOutput");
+
+  output.innerHTML = "⏳ در حال پردازش...";
+
+  const res = await fetch("https://mathlab-ai.vercel.app/api/ai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt: input })
+  });
+
+  const data = await res.json();
+  output.innerHTML = data.answer;
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
