@@ -1,0 +1,26 @@
+{
+  "name": "LessonLabPro",
+  "short_name": "LessonLab",
+  "description": "ابزاری برای استادان و دانش آموزان توسط آرمان نقشبندی.",
+  "lang": "fa",
+  "dir": "auto",
+  "start_url": "https://armannagshbndi.github.io/LsssonlabPro/",
+  "scope": ".",
+  "display": "minimal-ui",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+
+  "icons": [
+    {
+      "src": "logo5.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
