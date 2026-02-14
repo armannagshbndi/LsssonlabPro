@@ -222,6 +222,406 @@ function showPhysicsSection(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
+function calcDensity() {
+  const mass = parseFloat(document.getElementById("densityMass").value);
+  const volume = parseFloat(document.getElementById("densityVolume").value);
+  const result = document.getElementById("densityResult");
+
+  if (!mass || !volume) {
+    result.innerText = "جرم و حجم را وارد کنید.";
+    return;
+  }
+
+  const density = mass / volume;
+
+  result.innerText =
+    "چگالی = " + density.toFixed(2) + " g/cm³";
+}
+  
+
+function calcKineticEnergy() {
+  const m = parseFloat(document.getElementById("massKE").value);
+  const v = parseFloat(document.getElementById("velocityKE").value);
+  const result = document.getElementById("keResult");
+
+  if (!m || !v) {
+    result.innerText = "جرم و سرعت را وارد کنید.";
+    return;
+  }
+
+  const energy = 0.5 * m * v * v;
+
+  result.innerText =
+    "انرژی جنبشی = " + energy.toFixed(2) + " ژول";
+}
+
+
+
+function calcSolidPressure() {
+  const F = parseFloat(document.getElementById("sp_force").value);
+  const A = parseFloat(document.getElementById("sp_area").value);
+  const result = document.getElementById("sp_result");
+
+  if (!F || !A) {
+    result.innerText = "نیرو و مساحت را وارد کنید.";
+    return;
+  }
+
+  const P = F / A;
+  result.innerText = "فشار = " + P.toFixed(2) + " پاسکال";
+}
+
+
+
+
+
+function calcLiquidPressure() {
+  const rho = parseFloat(document.getElementById("lp_density").value);
+  const h = parseFloat(document.getElementById("lp_height").value);
+  const g = parseFloat(document.getElementById("lp_g").value);
+  const result = document.getElementById("lp_result");
+
+  if (!rho || !h) {
+    result.innerText = "مقادیر را وارد کنید.";
+    return;
+  }
+
+  const P = rho * g * h;
+  result.innerText = "فشار مایع = " + P.toFixed(2) + " پاسکال";
+}
+
+
+
+function calcTotalPressure() {
+  const p0 = parseFloat(document.getElementById("tp_surface").value);
+  const rho = parseFloat(document.getElementById("tp_density").value);
+  const h = parseFloat(document.getElementById("tp_height").value);
+  const g = parseFloat(document.getElementById("tp_g").value);
+  const result = document.getElementById("tp_result");
+
+  if (!rho || !h) {
+    result.innerText = "مقادیر را وارد کنید.";
+    return;
+  }
+
+  const total = p0 + rho * g * h;
+  result.innerText = "فشار کل = " + total.toFixed(2) + " پاسکال";
+}
+
+
+function calcFahrenheit() {
+  const c = parseFloat(document.getElementById("celsiusF").value);
+  const result = document.getElementById("fahrenheitResult");
+
+  if (isNaN(c)) {
+    result.innerText = "دما را وارد کنید";
+    return;
+  }
+
+  const f = (c * 9 / 5) + 32;
+  result.innerText = "دما = " + f.toFixed(2) + " °F";
+}
+
+
+
+
+function calcKelvin() {
+  const c = parseFloat(document.getElementById("celsiusK").value);
+  const result = document.getElementById("kelvinResult");
+
+  if (isNaN(c)) {
+    result.innerText = "دما را وارد کنید";
+    return;
+  }
+
+  const k = c + 273.15;
+  result.innerText = "دما = " + k.toFixed(2) + " K";
+}
+
+function calcLinearExpansion() {
+  const L0 = parseFloat(l0.value);
+  const a = parseFloat(alphaL.value);
+  const dT = parseFloat(deltaTL.value);
+
+  const dL = L0 * a * dT;
+  linearResult.innerText = "افزایش طول = " + dL;
+}
+
+
+function calcAreaExpansion() {
+  const A0 = parseFloat(a0.value);
+  const a = parseFloat(alphaA.value);
+  const dT = parseFloat(deltaTA.value);
+
+  const dA = A0 * 2 * a * dT;
+  areaResult.innerText = "افزایش سطح = " + dA;
+}
+
+
+
+function calcVolumeExpansion() {
+  const V0 = parseFloat(v0.value);
+  const a = parseFloat(alphaV.value);
+  const dT = parseFloat(deltaTV.value);
+
+  const dV = V0 * 3 * a * dT;
+  volumeResult.innerText = "افزایش حجم = " + dV;
+}
+
+
+
+
+function calcDensityChange() {
+  const rho0v = parseFloat(rho0.value);
+  const b = parseFloat(beta.value);
+  const dT = parseFloat(deltaTRho.value);
+
+  const rho = rho0v / (1 + b * dT);
+  densityResult.innerText = "چگالی جدید = " + rho;
+}
+
+
+
+
+function calcEquilibrium() {
+  const m1v = parseFloat(m1.value);
+  const c1v = parseFloat(c1.value);
+  const t1v = parseFloat(t1.value);
+
+  const m2v = parseFloat(m2.value);
+  const c2v = parseFloat(c2.value);
+  const t2v = parseFloat(t2.value);
+
+  const T =
+    (m1v * c1v * t1v + m2v * c2v * t2v) /
+    (m1v * c1v + m2v * c2v);
+
+  equilibriumResult.innerText = "دمای تعادل = " + T.toFixed(2) + " °C";
+}
+function calcElectricForce() {
+  const q1v = parseFloat(q1.value);
+  const q2v = parseFloat(q2.value);
+  const rv = parseFloat(r.value);
+  const result = document.getElementById("electricForceResult");
+
+  if (!q1v || !q2v || !rv) {
+    result.innerText = "تمام مقادیر را وارد کنید";
+    return;
+  }
+
+  const k = 9e9; // N·m²/C²
+  const F = k * Math.abs(q1v * q2v) / (rv * rv);
+
+  result.innerText = "نیروی الکتریکی = " + F.toExponential(3) + " N";
+}
+function calcElectricField() {
+  const qv = parseFloat(qField.value);
+  const rv = parseFloat(rField.value);
+  const result = document.getElementById("electricFieldResult");
+
+  if (!qv || !rv) {
+    result.innerText = "تمام مقادیر را وارد کنید";
+    return;
+  }
+
+  const k = 9e9; // N·m²/C²
+  const E = k * Math.abs(qv) / (rv * rv);
+
+  result.innerText = "میدان الکتریکی = " + E.toExponential(3) + " N/C";
+}
+
+function calcElectricWork() {
+  const qv = parseFloat(qWork.value);
+  const dV = parseFloat(deltaV.value);
+  const result = document.getElementById("electricWorkResult");
+
+  if (isNaN(qv) || isNaN(dV)) {
+    result.innerText = "تمام مقادیر را وارد کنید";
+    return;
+  }
+
+  const W = qv * dV;
+  result.innerText = "کار الکتریکی = " + W.toFixed(3) + " J";
+}
+function calcPowerPhysics() {
+  const W = parseFloat(workP.value);
+  const t = parseFloat(timeP.value);
+
+  const F = parseFloat(forceP.value);
+  const v = parseFloat(velocityP.value);
+
+  const result = document.getElementById("powerPhysicsResult");
+
+  let P1, P2;
+  if (!isNaN(W) && !isNaN(t) && t !== 0) {
+    P1 = W / t;
+  }
+
+  if (!isNaN(F) && !isNaN(v)) {
+    P2 = F * v;
+  }
+
+  if (P1 && P2) {
+    result.innerText = `توان از W/t = ${P1.toFixed(2)} W\nتوان از F.v = ${P2.toFixed(2)} W`;
+  } else if (P1) {
+    result.innerText = `توان = ${P1.toFixed(2)} W (W/t)`;
+  } else if (P2) {
+    result.innerText = `توان = ${P2.toFixed(2)} W (F.v)`;
+  } else {
+    result.innerText = "لطفاً مقادیر صحیح وارد کنید";
+  }
+}
+function calcCurrentPhysics() {
+  const V = parseFloat(voltageP.value);
+  const R = parseFloat(resistanceP.value);
+  const result = document.getElementById("currentPhysicsResult");
+
+  if (isNaN(V) || isNaN(R) || R === 0) {
+    result.innerText = "مقادیر صحیح وارد کنید (R ≠ 0)";
+    return;
+  }
+
+  const I = V / R;
+  result.innerText = "جریان = " + I.toFixed(3) + " A";
+}
+
+
+function calcGasLawCompare() {
+  const P1v = parseFloat(P1.value);
+  const V1v = parseFloat(V1.value);
+  const T1v = parseFloat(T1.value);
+  const P2v = parseFloat(P2.value);
+  const V2v = parseFloat(V2.value);
+  const T2v = parseFloat(T2.value);
+  const result = document.getElementById("gasLawCompareResult");
+
+  // محاسبه مقدار خالی
+  if (!P1v && P2v && V1v && V2v && T1v && T2v) {
+    result.innerText = `P1 = ${(P2v*V2v*T1v/(V1v*T2v)).toFixed(3)} Pa`;
+  } else if (P1v && !V1v && P2v && V2v && T1v && T2v) {
+    result.innerText = `V1 = ${(P2v*V2v*T1v/(P1v*T2v)).toFixed(3)} m³`;
+  } else if (P1v && V1v && !T1v && P2v && V2v && T2v) {
+    result.innerText = `T1 = ${(P1v*V1v*T2v/(P2v*V2v)).toFixed(3)} K`;
+  } else if (P1v && V1v && T1v && !P2v && V2v && T2v) {
+    result.innerText = `P2 = ${(P1v*V1v*T2v/(V2v*T1v)).toFixed(3)} Pa`;
+  } else if (P1v && V1v && T1v && P2v && !V2v && T2v) {
+    result.innerText = `V2 = ${(P1v*V1v*T2v/(P2v*T1v)).toFixed(3)} m³`;
+  } else if (P1v && V1v && T1v && P2v && V2v && !T2v) {
+    result.innerText = `T2 = ${(P2v*V2v*T1v/(P1v*V1v)).toFixed(3)} K`;
+  } else {
+    result.innerText = "یک مقدار خالی برای محاسبه بگذارید";
+  }
+}
+
+
+function calcGasLawMain() {
+  const P = parseFloat(P_main.value);
+  const V = parseFloat(V_main.value);
+  const n = parseFloat(n_main.value);
+  const T = parseFloat(T_main.value);
+  const result = document.getElementById("gasLawMainResult");
+  const R = 8.314;
+
+  if (!P && !V && n && T) {
+    result.innerText = `فشار = ${(n*R*T/V).toFixed(3)} Pa`;
+  } else if (P && !V && n && T) {
+    result.innerText = `حجم = ${(n*R*T/P).toFixed(3)} m³`;
+  } else if (P && V && !n && T) {
+    result.innerText = `تعداد مول = ${(P*V/(R*T)).toFixed(3)} mol`;
+  } else if (P && V && n && !T) {
+    result.innerText = `دمای T = ${(P*V/(n*R)).toFixed(3)} K`;
+  } else {
+    result.innerText = "لطفاً مقادیر مناسب وارد کنید (یک مقدار خالی برای محاسبه)";
+  }
+}
+
+
+function calcNewton2() {
+  const m = parseFloat(massN2.value);
+  const a = parseFloat(accN2.value);
+  const result = document.getElementById("newton2Result");
+
+  if (isNaN(m) || isNaN(a)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  const F = m * a;
+  result.innerText = "نیرو = " + F.toFixed(3) + " N";
+}
+function calcNormalForce() {
+  const m = parseFloat(massN.value);
+  const g = parseFloat(gN.value);
+  const result = document.getElementById("normalForceResult");
+
+  if (isNaN(m) || isNaN(g)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  const N = m * g;
+  result.innerText = "نیروی واکنش سطح = " + N.toFixed(3) + " N";
+}
+function calcApparentWeight() {
+  const m = parseFloat(massAW.value);
+  const a = parseFloat(accAW.value);
+  const dir = dirAW.value;
+  const g = 9.8;
+  const result = document.getElementById("apparentWeightResult");
+
+  if (isNaN(m) || isNaN(a)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  let W;
+  if (dir === "up") {
+    W = m * (g + a);
+  } else {
+    W = m * (g - a);
+  }
+
+  result.innerText = "وزن ظاهری = " + W.toFixed(3) + " N";
+}
+function calcFrictionStatic() {
+  const mu = parseFloat(muS.value);
+  const N = parseFloat(Nstatic.value);
+  const result = document.getElementById("frictionStaticResult");
+
+  if (isNaN(mu) || isNaN(N)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  const F = mu * N;
+  result.innerText = "حداکثر نیروی اصطکاک ایستایی = " + F.toFixed(3) + " N";
+}
+function calcFrictionKinetic() {
+  const mu = parseFloat(muK.value);
+  const N = parseFloat(Nkinetic.value);
+  const result = document.getElementById("frictionKineticResult");
+
+  if (isNaN(mu) || isNaN(N)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  const F = mu * N;
+  result.innerText = "نیروی اصطکاک جنبشی = " + F.toFixed(3) + " N";
+}
+function calcSpringForce() {
+  const k = parseFloat(kSpring.value);
+  const x = parseFloat(xSpring.value);
+  const result = document.getElementById("springForceResult");
+
+  if (isNaN(k) || isNaN(x)) {
+    result.innerText = "مقادیر معتبر وارد کنید";
+    return;
+  }
+
+  const F = k * x;
+  result.innerText = "نیروی فنر = " + F.toFixed(3) + " N";
+}
 
 
 function showLiteratureSection(id) {
