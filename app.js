@@ -629,8 +629,36 @@ function showLiteratureSection(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
+function getUserId() {
+  let id = localStorage.getItem("userId");
+  if (!id) {
+    id = "user_" + Math.random().toString(36).substr(2, 9);
+    localStorage.setItem("userId", id);
+  }
+  return id;
+}
+function askAI() {
+  const input = document.getElementById("aiInput").value;
+  const output = document.getElementById("aiOutput");
 
+  output.innerText = "در حال فکر کردن...";
 
+  setTimeout(() => {
+    output.innerText = fakeAI(input);
+  }, 500);
+}
+
+function fakeAI(q) {
+  q = q.toLowerCase();
+
+  if (q.includes("سلام"))
+    return "سلام! چطور می توانم کمک کنم؟";
+  if (q.includes("خداحافظ"))
+    return "خدانگهدار.";
+
+  return "متوجه نشدم، بیشتر توضیح بده.";
+}
+ 
 
 
 function showLiteratureSection(id){
