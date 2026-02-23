@@ -15,14 +15,16 @@ function showSection(id) {
 
 
 /* =================================
-   FLOATING TOOL MENU - PRO
+   FLOATING TOOL MENU - PRO MAX
 ================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ---------- Restore Last Section ---------- */
   const last = localStorage.getItem("lastSection");
-  if (last) showSection(last);
+  if (last && typeof showSection === "function") {
+    showSection(last);
+  }
 
   if (window.innerWidth > 768) return;
 
@@ -35,16 +37,24 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ---------- MENU ---------- */
   const menu = document.createElement("div");
   menu.id = "fab-menu";
-menu.innerHTML = `
-  <button onclick="openSection('prime')">${iconPrime()} فیزیک</button>
-  <button onclick="openSection('calc')">${iconCalc()} ادبیات</button>
-  <button onclick="openSection('stats')">${iconStats()} عربی</button>
-  <button onclick="openSection('trig')">${iconTrig()} شیمی</button>
-  <button onclick="showSection('english')">🇬🇧 انگلیسی</button>
-  <button onclick="openSection('advancedCalculator')">${iconadvancedCalculator()} هوش مصنوعی</button>
-  <button onclick="openSection('help')">${iconHelp()} راهنما</button>
-  <button onclick="openSection('about')">${iconInfo()} درباره</button>
-`;
+
+  const items = [
+    { id: "prime", label: "فیزیک", icon: iconPrime() },
+    { id: "calc", label: "ادبیات", icon: iconCalc() },
+    { id: "stats", label: "عربی", icon: iconStats() },
+    { id: "trig", label: "شیمی", icon: iconTrig() },
+    { id: "english", label: "انگلیسی", icon: "🇬🇧" },
+    { id: "advancedCalculator", label: "هوش مصنوعی", icon: iconAdvancedCalculator() },
+    { id: "help", label: "راهنما", icon: iconHelp() },
+    { id: "about", label: "درباره", icon: iconInfo() }
+  ];
+
+  items.forEach(item => {
+    const btn = document.createElement("button");
+    btn.innerHTML = `${item.icon} ${item.label}`;
+    btn.addEventListener("click", () => openSection(item.id));
+    menu.appendChild(btn);
+  });
 
   document.body.appendChild(menu);
 
@@ -53,19 +63,23 @@ menu.innerHTML = `
   /* ---------- Toggle ---------- */
   fab.addEventListener("click", (e) => {
     e.stopPropagation();
-    open = !open;
+    toggleMenu();
+  });
+
+  function toggleMenu(force) {
+    open = force !== undefined ? force : !open;
+
     menu.classList.toggle("open", open);
     fab.classList.toggle("active", open);
     fab.innerHTML = open ? "✕" : "☰";
-  });
+
+    if (navigator.vibrate) navigator.vibrate(25);
+  }
 
   /* ---------- Close on Outside Click ---------- */
   document.addEventListener("click", () => {
     if (!open) return;
-    open = false;
-    menu.classList.remove("open");
-    fab.classList.remove("active");
-    fab.innerHTML = "☰";
+    toggleMenu(false);
   });
 
   menu.addEventListener("click", e => e.stopPropagation());
@@ -73,11 +87,14 @@ menu.innerHTML = `
 
 /* ---------- Open Section + Save ---------- */
 function openSection(id) {
-  showSection(id);
-
+  if (typeof showSection === "function") {
+    showSection(id);
+    localStorage.setItem("lastSection", id);
+  }
 
   const menu = document.getElementById("fab-menu");
   const fab = document.getElementById("fab-btn");
+
   if (menu && fab) {
     menu.classList.remove("open");
     fab.classList.remove("active");
@@ -86,18 +103,16 @@ function openSection(id) {
 }
 
 /* =================================
-   SVG ICONS
+   ICONS
 ================================= */
 
-function iconPrime(){ return "⚛️"; }     // فیزیک
-function iconCalc(){ return "📖"; }      // ادبیات
-function iconStats(){ return "📝"; }     // عربی
-function iconTrig(){ return "🧪"; }      // شیمی
-function iconTrig(){ return "🌍"; }  
-function iconadvancedCalculator(){ return "🧠"; } // محاسبات
-function iconHelp(){ return "❓"; }       // راهنما
-function iconInfo(){ return "ℹ️"; }       // درباره
-
+function iconPrime(){ return "⚛️"; }
+function iconCalc(){ return "📖"; }
+function iconStats(){ return "📝"; }
+function iconTrig(){ return "🧪"; }
+function iconAdvancedCalculator(){ return "🧠"; }
+function iconHelp(){ return "❓"; }
+function iconInfo(){ return "ℹ️"; }
 
 
 
