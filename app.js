@@ -14,105 +14,7 @@ function showSection(id) {
 
 
 
-/* =================================
-   FLOATING TOOL MENU - PRO MAX
-================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* ---------- Restore Last Section ---------- */
-  const last = localStorage.getItem("lastSection");
-  if (last && typeof showSection === "function") {
-    showSection(last);
-  }
-
-  if (window.innerWidth > 768) return;
-
-  /* ---------- FAB BUTTON ---------- */
-  const fab = document.createElement("div");
-  fab.id = "fab-btn";
-  fab.innerHTML = "☰";
-  document.body.appendChild(fab);
-
-  /* ---------- MENU ---------- */
-  const menu = document.createElement("div");
-  menu.id = "fab-menu";
-
-  const items = [
-    { id: "prime", label: "فیزیک", icon: iconPrime() },
-    { id: "calc", label: "ادبیات", icon: iconCalc() },
-    { id: "stats", label: "عربی", icon: iconStats() },
-    { id: "trig", label: "شیمی", icon: iconTrig() },
-    { id: "english", label: "انگلیسی", icon: "🇬🇧" },
-    { id: "advancedCalculator", label: "هوش مصنوعی", icon: iconAdvancedCalculator() },
-    { id: "help", label: "راهنما", icon: iconHelp() },
-    { id: "about", label: "درباره", icon: iconInfo() }
-  ];
-
-  items.forEach(item => {
-    const btn = document.createElement("button");
-    btn.innerHTML = `${item.icon} ${item.label}`;
-    btn.addEventListener("click", () => openSection(item.id));
-    menu.appendChild(btn);
-  });
-
-  document.body.appendChild(menu);
-
-  let open = false;
-
-  /* ---------- Toggle ---------- */
-  fab.addEventListener("click", (e) => {
-    e.stopPropagation();
-    toggleMenu();
-  });
-
-  function toggleMenu(force) {
-    open = force !== undefined ? force : !open;
-
-    menu.classList.toggle("open", open);
-    fab.classList.toggle("active", open);
-    fab.innerHTML = open ? "✕" : "☰";
-
-    if (navigator.vibrate) navigator.vibrate(25);
-  }
-
-  /* ---------- Close on Outside Click ---------- */
-  document.addEventListener("click", () => {
-    if (!open) return;
-    toggleMenu(false);
-  });
-
-  menu.addEventListener("click", e => e.stopPropagation());
-});
-
-/* ---------- Open Section + Save ---------- */
-function openSection(id) {
-  if (typeof showSection === "function") {
-    showSection(id);
-    localStorage.setItem("lastSection", id);
-  }
-
-  const menu = document.getElementById("fab-menu");
-  const fab = document.getElementById("fab-btn");
-
-  if (menu && fab) {
-    menu.classList.remove("open");
-    fab.classList.remove("active");
-    fab.innerHTML = "☰";
-  }
-}
-
-/* =================================
-   ICONS
-================================= */
-
-function iconPrime(){ return "⚛️"; }
-function iconCalc(){ return "📖"; }
-function iconStats(){ return "📝"; }
-function iconTrig(){ return "🧪"; }
-function iconAdvancedCalculator(){ return "🧠"; }
-function iconHelp(){ return "❓"; }
-function iconInfo(){ return "ℹ️"; }
 
 
 
@@ -1032,6 +934,7 @@ async function translateFaToEn() {
   const data = await res.json();
   result.innerText = data[0][0][0];
 }
+
 
 
 
