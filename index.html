@@ -16,23 +16,26 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-
+<nav class="bottom-nav">
+    <button onclick="showSection('prime')">⚛️<span>فیزیک</span></button>
+    <button onclick="showSection('calc')">📖<span>ادبیات</span></button>
+    <button onclick="showSection('stats')">📝<span>عربی</span></button>
+    <button onclick="showSection('trig')">🧪<span>شیمی</span></button>
+    <button onclick="showSection('english')">🇬🇧<span>انگلیسی</span></button>
+    <button onclick="showSection('advancedCalculator')">🤖<span>هوش مصنوعی</span></button>
+    <button onclick="showSection('help')">❓<span>راهنما</span></button>
+    <button onclick="showSection('about')">ℹ️<span>درباره</span></button>
+</nav>
 <body>
 
   <div class="app">
+<header class="app-header">
+  <div class="header-content">
+    <img src="https://uploadkon.ir/uploads/8aa324_26logo5.png" alt="lessonlab logo" />
+    <span class="app-title">lessonlab Pro</span>
+  </div>
+</header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <h2>📘 lessonlab Pro</h2>
-      <button onclick="showSection('prime')">فیزیک</button>
-      <button onclick="showSection('calc')">ادبیات</button>
-      <button onclick="showSection('stats')">عربی</button>
-      <button onclick="showSection('trig')">شیمی</button>
-      <button onclick="showSection('english')">🇬🇧 انگلیسی</button>
-      <button onclick="showSection('advancedCalculator')">هوش مصنوعی</button>
-      <button onclick="showSection('help')">راهنما</button>
-      <button onclick="showSection('about')">درباره</button>
-    </aside>
 
     <!-- Main Content -->
     <main class="content">
@@ -81,22 +84,22 @@
           <strong>📘 فیزیک:</strong>
           در این بخش می‌توانید مسائل مربوط به سرعت، شتاب، نیرو، انرژی و سایر موضوعات فیزیک را تمرین یا محاسبه کنید.
         </div>
-
+<br>
         <div class="help-inline">
           <strong>📖 ادبیات:</strong>
           این بخش برای تمرین معنی لغات، درک مطلب، تحلیل متن و تمرین‌های ادبیات فارسی استفاده می‌شود.
         </div>
-
+<br>
         <div class="help-inline">
           <strong>📝 عربی:</strong>
           در این قسمت می‌توانید ترجمه جملات عربی، تمرین قواعد و ساخت جمله را انجام دهید.
         </div>
-
+<br>
         <div class="help-inline">
           <strong>🧪 شیمی:</strong>
           این بخش برای حل مسائل شیمی، جرم مولی، فرمول‌ها و تمرین‌های شیمی طراحی شده است.
         </div>
-
+<br>
         <div class="help-inline">
           <strong>🤖 محاسبات:</strong>
           در این بخش می‌توانید مسائل درس های مختلف را به صورت متنی وارد کنید تا سیستم آن را محاسبه کند.
@@ -717,7 +720,8 @@
         </div>
 
         <div class="chemistry-section">
-          <div id="chemMola" class="chemistry-item">
+
+          <div id="chemMola" class="chemistry-item hidden">
             <h4> تحلیل فرمول ؟</h4>
             <input id="molarMassInput1" placeholder="فرمول مثل H2O">
             <button onclick="analyzeAtom()">محاسبه</button>
