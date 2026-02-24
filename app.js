@@ -20,7 +20,6 @@ function showSection(id) {
 
 
 
-
 async function solveAIWithServer() {
   const input = document.getElementById("aiInput").value;
   const output = document.getElementById("aiOutput");
@@ -934,7 +933,6 @@ async function translateFaToEn() {
   const data = await res.json();
   result.innerText = data[0][0][0];
 }
-
 
 
 
