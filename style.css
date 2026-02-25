@@ -305,3 +305,102 @@ p {
     box-shadow: 0 30px 60px rgba(0,0,0,0.2);
   }
 }
+
+/* =========================
+   ABOUT PRO ANIMATED
+========================= */
+
+.about-card {
+  text-align: center;
+  animation: fadeUp 0.6s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-text {
+  margin-top: 10px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: #475569;
+}
+
+/* ردیفی و وسط‌چین */
+.about-links {
+  margin-top: 22px;
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* دکمه گرد حرفه‌ای */
+.social-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* آیکن */
+.social-btn img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+}
+
+/* افکت شناور */
+.social-btn:hover {
+  transform: translateY(-6px);
+}
+
+.social-btn:active {
+  transform: scale(0.92);
+}
+
+/* انیمیشن موج نور */
+.social-btn::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: rgba(255,255,255,0.3);
+  top: -100%;
+  left: -100%;
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+.social-btn:hover::before {
+  top: 100%;
+  left: 100%;
+}
+
+/* رنگ پس‌زمینه برند هنگام hover */
+
+.instagram:hover {
+  background: linear-gradient(135deg,#f58529,#dd2a7b,#8134af,#515bd4);
+}
+
+.whatsapp:hover {
+  background: #25D366;
+}
+
+.myket:hover {
+  background: #0035c8;
+}
+
