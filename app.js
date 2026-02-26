@@ -935,8 +935,307 @@ async function translateFaToEn() {
 }
 
 
+const kingsData = {
+
+  "مادها": [
+    {
+      name: "دیاکو",
+      order: 1,
+      birth: "قرن 8 پیش از میلاد",
+      death: "حدود 675 پیش از میلاد",
+      place: "ایران باستان",
+      description: "بنیان‌گذار حکومت مادها"
+    },
+    {
+      name: "هووخشتره",
+      order: 3,
+      birth: "قرن 7 پیش از میلاد",
+      death: "585 پیش از میلاد",
+      place: "ایران باستان",
+      description: "گسترش قلمرو مادها و شکست آشور"
+    }
+  ],
+
+  "هخامنشیان": [
+    {
+      name: "کوروش بزرگ",
+      order: 1,
+      birth: "حدود 600 پیش از میلاد",
+      death: "530 پیش از میلاد",
+      place: "امپراتوری هخامنشی",
+      description: "بنیان‌گذار شاهنشاهی هخامنشی"
+    },
+    {
+      name: "کمبوجیه",
+      order: 2,
+      birth: "558 پیش از میلاد",
+      death: "522 پیش از میلاد",
+      place: "ایران باستان",
+      description: "فتح مصر"
+    },
+    {
+      name: "داریوش بزرگ",
+      order: 3,
+      birth: "558 پیش از میلاد",
+      death: "486 پیش از میلاد",
+      place: "ایران باستان",
+      description: "اصلاحات اداری و ساخت تخت جمشید"
+    },
+    {
+      name: "خشایارشا",
+      order: 4,
+      birth: "518 پیش از میلاد",
+      death: "465 پیش از میلاد",
+      place: "ایران باستان",
+      description: "جنگ‌های ایران و یونان"
+    },
+    {
+      name: "داریوش سوم",
+      order: 10,
+      birth: "380 پیش از میلاد",
+      death: "330 پیش از میلاد",
+      place: "ایران باستان",
+      description: "آخرین شاه هخامنشی؛ شکست از اسکندر"
+    }
+  ],
+
+  "اشکانیان": [
+    {
+      name: "ارشک اول",
+      order: 1,
+      birth: "قرن 3 پیش از میلاد",
+      death: "211 پیش از میلاد",
+      place: "ایران اشکانی",
+      description: "بنیان‌گذار سلسله اشکانی"
+    },
+    {
+      name: "مهرداد اول",
+      order: 6,
+      birth: "قرن 2 پیش از میلاد",
+      death: "132 پیش از میلاد",
+      place: "ایران اشکانی",
+      description: "گسترش قلمرو اشکانیان"
+    },
+    {
+      name: "اردوان چهارم",
+      order: 29,
+      birth: "قرن 3 میلادی",
+      death: "224 میلادی",
+      place: "ایران اشکانی",
+      description: "آخرین شاه اشکانی"
+    }
+  ],
+
+  "ساسانیان": [
+    {
+      name: "اردشیر بابکان",
+      order: 1,
+      birth: "180 میلادی",
+      death: "242 میلادی",
+      place: "ایران ساسانی",
+      description: "بنیان‌گذار سلسله ساسانی"
+    },
+    {
+      name: "شاپور اول",
+      order: 2,
+      birth: "215 میلادی",
+      death: "270 میلادی",
+      place: "ایران ساسانی",
+      description: "شکست امپراتور روم"
+    },
+    {
+      name: "شاپور دوم",
+      order: 10,
+      birth: "309 میلادی",
+      death: "379 میلادی",
+      place: "ایران ساسانی",
+      description: "دوران طولانی و قدرتمند"
+    },
+    {
+      name: "خسرو انوشیروان",
+      order: 21,
+      birth: "501 میلادی",
+      death: "579 میلادی",
+      place: "ایران ساسانی",
+      description: "اصلاحات بزرگ اداری"
+    },
+    {
+      name: "خسرو پرویز",
+      order: 23,
+      birth: "570 میلادی",
+      death: "628 میلادی",
+      place: "ایران ساسانی",
+      description: "اوج قدرت ساسانیان"
+    },
+    {
+      name: "یزدگرد سوم",
+      order: 35,
+      birth: "624 میلادی",
+      death: "651 میلادی",
+      place: "ایران ساسانی",
+      description: "آخرین شاه ساسانی"
+    }
+  ],
+
+  "صفویه": [
+    {
+      name: "شاه اسماعیل اول",
+      order: 1,
+      birth: "1487 میلادی",
+      death: "1524 میلادی",
+      place: "ایران صفوی",
+      description: "بنیان‌گذار صفویه"
+    },
+    {
+      name: "شاه طهماسب",
+      order: 2,
+      birth: "1514 میلادی",
+      death: "1576 میلادی",
+      place: "ایران صفوی",
+      description: "دوره طولانی حکومت"
+    },
+    {
+      name: "شاه عباس بزرگ",
+      order: 5,
+      birth: "1571 میلادی",
+      death: "1629 میلادی",
+      place: "ایران صفوی",
+      description: "اوج قدرت صفویان"
+    },
+    {
+      name: "شاه سلطان حسین",
+      order: 9,
+      birth: "1668 میلادی",
+      death: "1726 میلادی",
+      place: "ایران صفوی",
+      description: "سقوط صفویه"
+    }
+  ],
+
+  "افشاریه": [
+    {
+      name: "نادرشاه افشار",
+      order: 1,
+      birth: "1688 میلادی",
+      death: "1747 میلادی",
+      place: "ایران افشاری",
+      description: "فتح هند و بازپس‌گیری سرزمین‌ها"
+    }
+  ],
+
+  "زندیه": [
+    {
+      name: "کریم‌خان زند",
+      order: 1,
+      birth: "1705 میلادی",
+      death: "1779 میلادی",
+      place: "ایران زند",
+      description: "حاکم عادل و مرکزیت شیراز"
+    }
+  ],
+
+  "قاجار": [
+    {
+      name: "آقامحمدخان قاجار",
+      order: 1,
+      birth: "1742 میلادی",
+      death: "1797 میلادی",
+      place: "ایران قاجار",
+      description: "بنیان‌گذار قاجار"
+    },
+    {
+      name: "فتحعلی‌شاه",
+      order: 2,
+      birth: "1769 میلادی",
+      death: "1834 میلادی",
+      place: "ایران قاجار",
+      description: "جنگ‌های ایران و روس"
+    },
+    {
+      name: "ناصرالدین‌شاه",
+      order: 4,
+      birth: "1831 میلادی",
+      death: "1896 میلادی",
+      place: "ایران قاجار",
+      description: "سفر به اروپا و دوره طولانی حکومت"
+    },
+    {
+      name: "احمدشاه",
+      order: 7,
+      birth: "1898 میلادی",
+      death: "1930 میلادی",
+      place: "ایران قاجار",
+      description: "آخرین شاه قاجار"
+    }
+  ],
+
+  "پهلوی": [
+    {
+      name: "رضاشاه پهلوی",
+      order: 1,
+      birth: "1878 میلادی",
+      death: "1944 میلادی",
+      place: "ایران پهلوی",
+      description: "مدرن‌سازی ایران"
+    },
+    {
+      name: "محمدرضاشاه پهلوی",
+      order: 2,
+      birth: "1919 میلادی",
+      death: "1980 میلادی",
+      place: "ایران پهلوی",
+      description: "آخرین شاه ایران"
+    }
+  ]
+
+};
 
 
+const dynastySelect = document.getElementById("dynastySelect");
+const kingSelect = document.getElementById("kingSelect");
+const kingInfo = document.getElementById("kingInfo");
 
+// پر کردن لیست سلسله‌ها
+for (let dynasty in kingsData) {
+  let option = document.createElement("option");
+  option.value = dynasty;
+  option.textContent = dynasty;
+  dynastySelect.appendChild(option);
+}
 
+function loadKings() {
+  kingSelect.innerHTML = '<option value="">یک پادشاه انتخاب کنید</option>';
+  kingInfo.innerHTML = "";
 
+  const selectedDynasty = dynastySelect.value;
+  if (!selectedDynasty) return;
+
+  kingsData[selectedDynasty].forEach((king, index) => {
+    let option = document.createElement("option");
+    option.value = index;
+    option.textContent = king.name;
+    kingSelect.appendChild(option);
+  });
+}
+
+function showKingInfo() {
+  const dynasty = dynastySelect.value;
+  const kingIndex = kingSelect.value;
+
+  if (!dynasty || kingIndex === "") return;
+
+  const king = kingsData[dynasty][kingIndex];
+
+  kingInfo.innerHTML = `
+    <div class="card">
+      👑 <strong>${king.name}</strong><br><br>
+      🏛 سلسله: ${dynasty}<br>
+      🔢 چندمین پادشاه: ${king.order}<br>
+      📅 تولد: ${king.birth}<br>
+      ⚰️ وفات: ${king.death}<br>
+      📍 محل حکومت: ${king.place}<br><br>
+      📖 مهم‌ترین اقدامات:<br>
+      ${king.description}
+    </div>
+  `;
+}
