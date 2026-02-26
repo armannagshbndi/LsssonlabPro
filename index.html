@@ -22,6 +22,7 @@
     <button onclick="showSection('stats')">📝<span>عربی</span></button>
     <button onclick="showSection('trig')">🧪<span>شیمی</span></button>
     <button onclick="showSection('english')">🇬🇧<span>انگلیسی</span></button>
+    <button onclick="showSection('history')">🏛<span>تاریخ</span></button>
     <button onclick="showSection('advancedCalculator')">🤖<span>هوش مصنوعی</span></button>
     <button onclick="showSection('help')">❓<span>راهنما</span></button>
     <button onclick="showSection('about')">ℹ️<span>درباره</span></button>
@@ -764,7 +765,29 @@
         <p id="aiOutput" class="ai-output"></p>
       </section>
 
+<section id="history" class="card hidden">
+  <h3>🏛 تاریخ پادشاهان ایران</h3>
 
+  <div class="history-tabs">
+    <button onclick="showHistorySection('kingsSection')">👑 پادشاهان</button>
+  </div>
+
+  <div id="kingsSection" class="history-item">
+
+    <h4>انتخاب سلسله</h4>
+    <select id="dynastySelect" onchange="loadKings()">
+      <option value="">یک سلسله انتخاب کنید</option>
+    </select>
+
+    <h4 style="margin-top:15px;">انتخاب پادشاه</h4>
+    <select id="kingSelect" onchange="showKingInfo()">
+      <option value="">یک پادشاه انتخاب کنید</option>
+    </select>
+
+    <div id="kingInfo" style="margin-top:15px;"></div>
+
+  </div>
+</section>
 
 
 <section id="about" class="card hidden about-card">
