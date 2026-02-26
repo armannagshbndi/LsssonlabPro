@@ -404,3 +404,17 @@ p {
   background: #0035c8;
 }
 
+.history-tabs {
+  display:flex;
+  gap:8px;
+  margin-bottom:15px;
+}
+
+.history-tabs button {
+  flex:none;
+  padding:10px 14px;
+  border-radius:20px;
+  background:#e0e7ff;
+  color:#1e3a8a;
+  font-size:13px;
+}
